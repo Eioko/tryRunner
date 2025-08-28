@@ -68,9 +68,9 @@ jobs:
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest
 
   deploy-to-local:
+    needs: build
     runs-on: self-hosted # 使用这个标签，任务就会发配到你的本地Runner执行
     steps:
       - name: Deploy to K8s
-        run: |
-          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -ForceSet-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
-          kubectl set image deployment/your-deployment your-container=${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
+        shell: cmd
+        run: kubectl set image deployment/your-deployment your-container=${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
