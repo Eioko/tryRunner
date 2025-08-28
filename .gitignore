@@ -1,0 +1,9 @@
+target
+node_modules
+# node_modules*
+.idea
+.vscode
+*.zip
+.DS_Store
+out
+/CampusMarket-frontend/dist/
